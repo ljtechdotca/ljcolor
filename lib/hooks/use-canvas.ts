@@ -7,6 +7,7 @@ const useCanvas = (height: number) => {
   const [saturation, setSaturation] = useState(100);
   const [light, setLight] = useState(50);
 
+  const positionRef = useRef<Record<string, number>>({});
   const gradientCanvasRef = useRef<HTMLCanvasElement>(null);
   const gradientContextRef = useRef<CanvasRenderingContext2D | null>(null);
   const swatchCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -20,29 +21,35 @@ const useCanvas = (height: number) => {
       const gradientCanvas = gradientCanvasRef.current;
       const swatchCanvas = swatchCanvasRef.current;
       if (gradientCanvas && swatchCanvas) {
+        positionRef.current = { x: gradientCanvas.offsetWidth, y: 0 };
         gradientCanvas.height = height;
         gradientCanvas.width = gradientCanvas.offsetWidth;
         swatchCanvas.height = height;
         swatchCanvas.width = gradientCanvas.offsetWidth;
-        const gradientCtx = gradientCanvas.getContext("2d");
-        const swatchCtx = swatchCanvas.getContext("2d");
-        if (gradientCtx && swatchCtx) {
-          gradientCtx.fillStyle = "red";
-          gradientContextRef.current = gradientCtx;
-          swatchContextRef.current = swatchCtx;
+        const gradientContext = gradientCanvas.getContext("2d");
+        const swatchContext = swatchCanvas.getContext("2d");
+        if (gradientContext && swatchContext) {
+          gradientContext.fillStyle = "red";
+          gradientContextRef.current = gradientContext;
+          swatchContextRef.current = swatchContext;
           canvas.color(
-            gradientCtx,
+            gradientContext,
             format.hsl(hue, saturation, light),
             gradientCanvas.offsetWidth,
             height
           );
-          canvas.light(gradientCtx, 0, gradientCanvas.offsetWidth, height);
-          canvas.dark(gradientCtx, 0, gradientCanvas.offsetWidth, height);
+          canvas.light(gradientContext, 0, gradientCanvas.offsetWidth, height);
+          canvas.dark(gradientContext, 0, gradientCanvas.offsetWidth, height);
           canvas.color(
-            swatchCtx,
+            swatchContext,
             format.hsl(hue, saturation, light),
             swatchCanvas.offsetWidth,
             height
+          );
+          canvas.select(
+            gradientContext,
+            positionRef.current.x,
+            positionRef.current.y
           );
         }
       }
@@ -69,6 +76,10 @@ const useCanvas = (height: number) => {
           const rect = (event.target as any).getBoundingClientRect();
           const x = event.clientX - rect.left;
           const y = event.clientY - rect.top;
+
+          positionRef.current.x = x;
+          positionRef.current.y = y;
+
           const imgData = gradientContext.getImageData(x, y, 1, 1);
           const [red, green, blue] = [
             imgData.data[0],
@@ -79,37 +90,31 @@ const useCanvas = (height: number) => {
           setHue(hue);
           setSaturation(saturation);
           setLight(light);
+
+          gradientContext.clearRect(0, 0, gradientCanvas.offsetWidth, height);
+          canvas.color(
+            gradientContext,
+            format.hsl(hue, 100, 50),
+            gradientCanvas.offsetWidth,
+            height
+          );
+          canvas.light(
+            gradientContext,
+            hue,
+            gradientCanvas.offsetWidth,
+            height
+          );
+          canvas.dark(gradientContext, hue, gradientCanvas.offsetWidth, height);
           canvas.color(
             swatchContext,
             format.hsl(hue, saturation, light),
             swatchCanvas.offsetWidth,
             height
           );
+          canvas.select(gradientContext, x, y);
         });
       }
-      return () => {
-        gradientCanvas.removeEventListener("click", (event) => {
-          const rect = (event.target as any).getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          const imgData = gradientContext.getImageData(x, y, 1, 1);
-          const [red, green, blue] = [
-            imgData.data[0],
-            imgData.data[1],
-            imgData.data[2],
-          ];
-          const [hue, saturation, light] = format.rgbToHsl(red, green, blue);
-          setHue(hue);
-          setSaturation(saturation);
-          setLight(light);
-          canvas.color(
-            swatchContext,
-            format.hsl(hue, saturation, light),
-            swatchCanvas.offsetWidth,
-            height
-          );
-        });
-      };
+      return () => {};
     },
     [height]
   );
@@ -145,6 +150,11 @@ const useCanvas = (height: number) => {
         format.hsl(hue, saturation, light),
         swatchCanvas.offsetWidth,
         height
+      );
+      canvas.select(
+        gradientContext,
+        positionRef.current.x,
+        positionRef.current.y
       );
     }
   };

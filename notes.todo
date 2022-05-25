@@ -1,0 +1,3 @@
+☐ fix the hue ColorSlider
+    the hue ColorSlider changes its value whenever the gradient onClick event is fired
+    this is because the hue value is shared among all the different components and set onClick
