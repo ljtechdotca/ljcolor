@@ -1,0 +1,36 @@
+.root {
+  display: grid;
+  padding: 1rem;
+  place-items: center center;
+}
+
+.base {
+  -webkit-appearance: none;
+  border-radius: 9999px;
+  border: 0.75rem solid white;
+  cursor: pointer;
+  height: 2rem;
+  width: 100%;
+  &:hover {
+    opacity: 1;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 9999px;
+    border: 0.125rem solid white;
+    cursor: grab;
+    height: 2rem;
+    width: 2rem;
+  }
+  background: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+}

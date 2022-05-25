@@ -1,0 +1,54 @@
+.root {
+  background-color: #ffffff;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: #555555;
+  margin: auto;
+  max-width: 768px;
+  overflow: hidden;
+}
+
+.heading {
+  background-color: rgba(255, 255, 255, 1);
+  display: grid;
+  font-size: 20px;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: underline;
+  user-select: none;
+}
+
+.gradient {
+  cursor: crosshair;
+  display: grid;
+  width: 100%;
+}
+
+.swatch {
+  cursor: pointer;
+  display: grid;
+  height: 240px;
+  width: 100%;
+}
+
+.fields {
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.field {
+  border-radius: 0.25rem;
+  border: 1px solid #555555;
+  cursor: copy;
+  display: grid;
+  font-size: 14px;
+  padding: 0.25rem 0.25rem 0.75rem;
+  place-items: center center;
+}
+
+.legend {
+  padding: 0 0.5rem;
+}
