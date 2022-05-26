@@ -2,16 +2,18 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import canvas from "../helpers/canvas";
 import format from "../helpers/format";
 
-const useCanvas = (height: number) => {
+const useCanvas = () => {
   const [hue, setHue] = useState(0);
   const [saturation, setSaturation] = useState(100);
   const [light, setLight] = useState(50);
-
+  
   const positionRef = useRef<Record<string, number>>({});
   const gradientCanvasRef = useRef<HTMLCanvasElement>(null);
   const gradientContextRef = useRef<CanvasRenderingContext2D | null>(null);
   const swatchCanvasRef = useRef<HTMLCanvasElement>(null);
   const swatchContextRef = useRef<CanvasRenderingContext2D | null>(null);
+
+  const height = 240;
 
   /**
    * Initialize Reference Objects

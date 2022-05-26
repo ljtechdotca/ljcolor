@@ -2,13 +2,14 @@
   display: grid;
 }
 
-.heading {
+.base {
   background-color: rgba(255, 255, 255, 1);
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   color: #555555;
   display: grid;
   font-size: 20px;
+  font-weight: 600;
   margin: 1rem auto 0;
   max-width: 768px;
   padding: 1rem;

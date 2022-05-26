@@ -4,11 +4,9 @@ import useCanvas from "../lib/hooks/use-canvas";
 import styles from "./ColorPicker.module.scss";
 import ColorSlider from "./ColorSlider";
 
-interface ColorPickerProps {
-  height: number;
-}
+interface ColorPickerProps {}
 
-const ColorPicker: FC<ColorPickerProps> = ({ height }) => {
+const ColorPicker: FC<ColorPickerProps> = ({}) => {
   const {
     gradientCanvasRef,
     swatchCanvasRef,
@@ -16,12 +14,11 @@ const ColorPicker: FC<ColorPickerProps> = ({ height }) => {
     saturation,
     light,
     changeHue,
-  } = useCanvas(height);
+  } = useCanvas();
 
   return (
     <div className={styles.root}>
-      <header className={styles.heading}>https://ljcolor.vercel.app</header>
-      <canvas className={styles.gradient} ref={gradientCanvasRef} />
+      <canvas className={styles.swatch} ref={swatchCanvasRef} />
       <div className={styles.fields}>
         <fieldset className={styles.field}>
           <legend className={styles.legend}>HEX</legend>
@@ -38,8 +35,8 @@ const ColorPicker: FC<ColorPickerProps> = ({ height }) => {
           </div>
         </fieldset>
       </div>
+      <canvas className={styles.gradient} ref={gradientCanvasRef} />
       <ColorSlider hue={hue} onHueChange={changeHue} />
-      <canvas className={styles.swatch} ref={swatchCanvasRef} />
     </div>
   );
 };

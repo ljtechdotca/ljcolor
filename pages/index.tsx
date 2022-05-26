@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import ColorPicker from "../components/ColorPicker";
+import Container from "../components/Container";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 
@@ -15,11 +16,11 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <ColorPicker height={240} />
+      <main>
+        <Container>
+          <ColorPicker />
+        </Container>
       </main>
-
       <Footer />
     </div>
   );
