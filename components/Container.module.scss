@@ -1,17 +1,6 @@
 .root {
-  background-color: #ffffff;
+  background-color: var(--accent-1);
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  color: #555555;
-  margin: auto;
-  max-width: 768px;
   overflow: hidden;
-}
-
-.base {
-  background-color: rgba(255, 255, 255, 1);
-  display: grid;
-  font-size: 20px;
-  padding: 1rem;
-  text-align: center;
 }

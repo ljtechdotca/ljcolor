@@ -8,7 +8,6 @@ interface ContainerProps {
 const Container: FC<ContainerProps> = ({ children }) => {
   return (
     <div className={styles.root}>
-      <header className={styles.base}>https://ljcolor.vercel.app</header>
       {children}
     </div>
   );

@@ -3,6 +3,7 @@ import Head from "next/head";
 import ColorPicker from "../components/ColorPicker";
 import Container from "../components/Container";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
@@ -16,7 +17,8 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Header />
+      <main className={styles.base}>
         <Container>
           <ColorPicker />
         </Container>
