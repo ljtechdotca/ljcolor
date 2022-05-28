@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.base}>
+      <main>
         <Container>
           <ColorPicker />
         </Container>

@@ -1,8 +1,10 @@
 .root {
   background-color: var(--accent-1);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   display: grid;
   font-size: 20px;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   max-width: 768px;
   padding: 1rem;
   text-align: center;

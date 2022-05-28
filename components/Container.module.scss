@@ -1,6 +1,8 @@
 .root {
   background-color: var(--accent-1);
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 0.5rem;
   overflow: hidden;
+  margin: 1rem auto;
+  max-width: 768px;
+  width: 100%;
 }

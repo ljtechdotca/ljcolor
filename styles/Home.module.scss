@@ -1,12 +1,8 @@
 .root {
   background-color: var(--background);
   color: var(--foreground);
-  padding: 0 1rem;
-}
-
-.base {
-  margin: auto;
-  max-width: 768px;
-  min-height: calc(100vh - 118px);
-  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
